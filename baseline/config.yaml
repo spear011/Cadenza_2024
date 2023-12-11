@@ -1,0 +1,51 @@
+
+mode: valid # train or valid
+
+path:
+  root: data_dir
+  metadata_dir: ${path.root}/metadata
+  music_dir: ${path.root}/audio/at_mic_music
+  gains_file: ${path.metadata_dir}/gains.json
+  head_positions_file: ${path.metadata_dir}/head_positions.json
+  listeners_file: ${path.metadata_dir}/listeners.${mode}.json
+  music_file: ${path.metadata_dir}/at_mic_music.${mode}.json
+  scenes_file: ${path.metadata_dir}/scenes.${mode}.json
+  scene_listeners_file: ${path.metadata_dir}/scene_listeners.${mode}.json
+  exp_folder: data_dir/output # folder to store enhanced signals and final results
+  enhanced_folder: data_dir/enhanced_signals_aug_sdr_4.0762
+
+sample_rate: 44100
+remix_sample_rate: 32000
+HAAQI_sample_rate: 24000
+
+nalr:
+  nfir: 220
+  sample_rate: ${sample_rate}
+
+apply_compressor: False
+
+apply_wiener : True
+
+compressor:
+  threshold: 0.35
+  attenuation: 0.1
+  attack: 50
+  release: 1000
+  rms_buffer_size: 0.064
+
+soft_clip: False
+
+separator:
+  model: demucs   # demucs or openunmix
+  ckpt: default   # default or best
+
+evaluate:
+  set_random_seed: True
+  small_test: False
+  batch_size: 1  # Number of batches
+  batch: 0       # Batch number to evaluate
+
+# hydra config
+hydra:
+  run:
+    dir: ${path.exp_folder}
