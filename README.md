@@ -21,7 +21,7 @@ Training code for the mss models based on [[here]](https://github.com/ZFTurbo/Mu
 |PS-KD w/o aug|O|-|-|4.2505|0.6764|
 |PS-KD w/ aug|O|-|O|4.4060|0.6818|
 |PS-KD Curri w/o aug|O|O|-|4.2002|0.6772|
-|PS-KD Curri w/ aug|O|O|O|-|-|
+|PS-KD Curri w/ aug|O|O|O|**4.5481**|**0.6836**|
 
 ### PS-KD
 - The PS-KD method uses targets by creating soft targets, and we used an alpha of 0.8.
